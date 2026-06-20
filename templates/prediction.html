@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hoax Prediction</title>
+</head>
+<body>
+    <h1>Hoax Prediction</h1>
+
+    <nav>
+        <a href="/">Home</a> |
+        <a href="/prediction">Prediction</a> |
+        <a href="/information">Information</a>
+    </nav>
+
+    <form method="POST" action="/prediction">
+        <textarea name="text" rows="8" cols="60" placeholder="Enter information text here...">{{ input_text }}</textarea>
+        <br><br>
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if result %}
+        <h2>Prediction Result: {{ result }}</h2>
+    {% endif %}
+</body>
+</html>
