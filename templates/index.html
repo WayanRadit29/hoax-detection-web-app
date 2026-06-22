@@ -1,17 +1,136 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Hoax Detection Web App</title>
-</head>
-<body>
-    <h1>Hoax Detection Web Application</h1>
-    <p>A simple web application for detecting hoax information.</p>
-
-    <nav>
-        <a href="/">Home</a> |
-        <a href="/prediction">Prediction</a> |
-        <a href="/information">Information</a>
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistem Deteksi Hoax</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="bg-slate-200 font-sans min-h-screen flex flex-col">
+    
+    <!-- Navbar -->
+    <nav class="bg-white border-b-4 border-black shadow-[0_8px_0_0_#000] relative z-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-20">
+          <div class="flex w-full items-center justify-between">
+            <a href="index.html" class="flex-shrink-0 flex items-center cursor-pointer group">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="text-black group-hover:scale-110 transition-transform"><path d="m12 22-8-4.5v-7.5l8-4.5 8 4.5v7.5z"/><path d="m12 8v4"/><path d="m12 16h.01"/></svg>
+              <span class="ml-2 text-3xl font-black tracking-tighter text-black uppercase decoration-4 decoration-black">
+                Guard<span class="bg-black text-white px-2 py-1 ml-1">Hoax</span>
+              </span>
+            </a>
+            
+            <div class="hidden sm:flex sm:space-x-4">
+              <a href="index.html" class="nav-btn bg-black text-white shadow-[4px_4px_0_0_#000] border-4 border-black px-6 py-2 text-md font-black uppercase tracking-wider transition-all inline-flex items-center">
+                Beranda
+              </a>
+              <a href="prediction.html" class="nav-btn bg-white text-black hover:bg-slate-200 hover:shadow-[4px_4px_0_0_#000] flex items-center border-4 border-black px-6 py-2 text-md font-black uppercase tracking-wider transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                Prediksi
+              </a>
+              <a href="information.html" class="nav-btn bg-white text-black hover:bg-slate-200 hover:shadow-[4px_4px_0_0_#000] flex items-center border-4 border-black px-6 py-2 text-md font-black uppercase tracking-wider transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><line x1="10" x2="8" y1="9" y2="9"/></svg>
+                Data
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Mobile Nav -->
+      <div class="sm:hidden border-t-4 border-black bg-white p-4">
+        <div class="flex flex-col space-y-3">
+           <a href="index.html" class="mobile-nav-btn px-4 py-3 border-4 border-black text-lg font-black uppercase transition-all bg-black text-white shadow-[4px_4px_0_0_#000] text-center">
+             Beranda
+           </a>
+           <a href="prediction.html" class="mobile-nav-btn px-4 py-3 border-4 border-black text-lg font-black uppercase transition-all bg-white text-black shadow-[4px_4px_0_0_#000] text-center">
+             Prediksi
+           </a>
+           <a href="information.html" class="mobile-nav-btn px-4 py-3 border-4 border-black text-lg font-black uppercase transition-all bg-white text-black shadow-[4px_4px_0_0_#000] text-center">
+             Data
+           </a>
+        </div>
+      </div>
     </nav>
-</body>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-4 sm:p-8">
+      
+      <!-- SECTION: HOME -->
+      <section id="page-home" class="max-w-7xl mx-auto space-y-16 py-8">
+        <div class="bg-white border-4 border-black shadow-[12px_12px_0_0_#000] p-8 md:p-16 relative overflow-hidden">
+          <div class="absolute top-4 right-4 w-24 h-24 border-4 border-black rotate-12 opacity-10 pointer-events-none"></div>
+          <div class="absolute -bottom-8 -left-8 w-48 h-48 border-[8px] border-black rounded-full opacity-10 pointer-events-none"></div>
+          
+          <div class="relative text-center max-w-4xl mx-auto space-y-10">
+            <h1 class="text-5xl md:text-8xl font-black tracking-tighter text-black uppercase leading-none">
+              Sistem Deteksi <span class="bg-black text-white px-4 py-2 mt-2 inline-block border-4 border-white shadow-[6px_6px_0_0_#000]">Hoax</span>
+            </h1>
+            <p class="text-xl md:text-2xl font-bold border-l-8 border-yellow-400 pl-6 text-left md:text-center md:border-l-0 md:pl-0">
+              Platform cerdas berbasis web untuk memverifikasi kebenaran informasi dan mendeteksi pesan teks yang terindikasi hoax.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-6 pt-6">
+                <a href="prediction.html" class="w-full sm:w-auto border-4 border-black bg-emerald-400 px-10 py-5 text-xl font-black text-black shadow-[6px_6px_0_0_#000] hover:translate-y-1 hover:shadow-none transition-all uppercase tracking-wider inline-block">
+                Coba Prediksi
+              </a>
+              <a href="information.html" class="w-full sm:w-auto border-4 border-black bg-white px-10 py-5 text-xl font-black text-black shadow-[6px_6px_0_0_#000] hover:translate-y-1 hover:shadow-none hover:bg-black hover:text-white transition-all uppercase tracking-wider flex items-center justify-center">
+                Lihat Data <span aria-hidden="true" class="ml-2">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-10">
+          <div class="bg-black p-4 inline-block shadow-[6px_6px_0_0_#000] border-4 border-black rotate-[-2deg]">
+            <h2 class="text-3xl font-black text-white uppercase tracking-widest px-4">Alur Deteksi</h2>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+            <!-- Step 1 -->
+            <div class="bg-white border-4 border-black shadow-[8px_8px_0_0_#000] p-8 flex flex-col h-full hover:-translate-y-2 hover:shadow-[12px_12px_0_0_#000] transition-all relative">
+              <div class="relative z-10">
+                <div class="mb-6 flex h-20 w-20 items-center justify-center border-4 border-black bg-yellow-300 shadow-[4px_4px_0_0_#000]">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="text-black"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                </div>
+                <h3 class="text-3xl font-black uppercase mb-4 border-b-4 border-black pb-4">Masukkan Teks</h3>
+                <p class="text-xl font-medium leading-relaxed">Salin teks dari media sosial atau berita yang dicurigai ke dalam formulir deteksi sistem.</p>
+              </div>
+            </div>
+            
+            <!-- Step 2 -->
+            <div class="bg-white border-4 border-black shadow-[8px_8px_0_0_#000] p-8 flex flex-col h-full hover:-translate-y-2 hover:shadow-[12px_12px_0_0_#000] transition-all relative">
+              <div class="relative z-10">
+                <div class="mb-6 flex h-20 w-20 items-center justify-center border-4 border-black bg-blue-400 shadow-[4px_4px_0_0_#000]">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="text-black"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                </div>
+                <h3 class="text-3xl font-black uppercase mb-4 border-b-4 border-black pb-4">Sistem Menganalisis</h3>
+                <p class="text-xl font-medium leading-relaxed">Platform memproses dan memprediksi kredibilitas teks secara langsung dan menghasilkan label deteksi.</p>
+              </div>
+            </div>
+            
+            <!-- Step 3 -->
+            <div class="bg-white border-4 border-black shadow-[8px_8px_0_0_#000] p-8 flex flex-col h-full hover:-translate-y-2 hover:shadow-[12px_12px_0_0_#000] transition-all relative">
+              <div class="relative z-10">
+                <div class="mb-6 flex h-20 w-20 items-center justify-center border-4 border-black bg-fuchsia-400 shadow-[4px_4px_0_0_#000]">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="text-black"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>
+                </div>
+                <h3 class="text-3xl font-black uppercase mb-4 border-b-4 border-black pb-4">Cari & Filter Data</h3>
+                <p class="text-xl font-medium leading-relaxed">Simpan dan tinjau ulang arsip informasi yang sudah diproses di halaman Data Informasi.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t-4 border-black mt-auto">
+      <div class="mx-auto max-w-7xl px-6 py-6 lg:px-8">
+        <p class="text-center text-sm font-bold text-black uppercase tracking-wider">
+          &copy; 2026 Sistem Deteksi Hoax. All rights reserved.
+        </p>
+      </div>
+    </footer>
+  </body>
 </html>

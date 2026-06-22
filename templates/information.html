@@ -1,18 +1,250 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Information Data</title>
-</head>
-<body>
-    <h1>Information Data</h1>
-
-    <nav>
-        <a href="/">Home</a> |
-        <a href="/prediction">Prediction</a> |
-        <a href="/information">Information</a>
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Informasi | Sistem Deteksi Hoax</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="bg-slate-200 font-sans min-h-screen flex flex-col">
+    
+    <!-- Navbar -->
+    <nav class="bg-white border-b-4 border-black shadow-[0_8px_0_0_#000] relative z-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-20">
+          <div class="flex w-full items-center justify-between">
+            <a href="index.html" class="flex-shrink-0 flex items-center cursor-pointer group">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="text-black group-hover:scale-110 transition-transform"><path d="m12 22-8-4.5v-7.5l8-4.5 8 4.5v7.5z"/><path d="m12 8v4"/><path d="m12 16h.01"/></svg>
+              <span class="ml-2 text-3xl font-black tracking-tighter text-black uppercase decoration-4 decoration-black">
+                Guard<span class="bg-black text-white px-2 py-1 ml-1">Hoax</span>
+              </span>
+            </a>
+            
+            <div class="hidden sm:flex sm:space-x-4">
+              <a href="index.html" class="nav-btn bg-white text-black hover:bg-slate-200 hover:shadow-[4px_4px_0_0_#000] border-4 border-black px-6 py-2 text-md font-black uppercase tracking-wider transition-all inline-flex items-center">
+                Beranda
+              </a>
+              <a href="prediction.html" class="nav-btn bg-white text-black hover:bg-slate-200 hover:shadow-[4px_4px_0_0_#000] flex items-center border-4 border-black px-6 py-2 text-md font-black uppercase tracking-wider transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                Prediksi
+              </a>
+              <a href="information.html" class="nav-btn bg-black text-white shadow-[4px_4px_0_0_#000] flex items-center border-4 border-black px-6 py-2 text-md font-black uppercase tracking-wider transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><line x1="10" x2="8" y1="9" y2="9"/></svg>
+                Data
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Mobile Nav -->
+      <div class="sm:hidden border-t-4 border-black bg-white p-4">
+        <div class="flex flex-col space-y-3">
+           <a href="index.html" class="mobile-nav-btn px-4 py-3 border-4 border-black text-lg font-black uppercase transition-all bg-white text-black shadow-[4px_4px_0_0_#000] text-center">
+             Beranda
+           </a>
+           <a href="prediction.html" class="mobile-nav-btn px-4 py-3 border-4 border-black text-lg font-black uppercase transition-all bg-white text-black shadow-[4px_4px_0_0_#000] text-center">
+             Prediksi
+           </a>
+           <a href="information.html" class="mobile-nav-btn px-4 py-3 border-4 border-black text-lg font-black uppercase transition-all bg-black text-white shadow-[4px_4px_0_0_#000] text-center">
+             Data
+           </a>
+        </div>
+      </div>
     </nav>
 
-    <p>Information data and filter feature will be added later.</p>
-</body>
+    <!-- Main Content -->
+    <main class="flex-1 p-4 sm:p-8">
+      <!-- SECTION: INFORMATION -->
+      <section id="page-info" class="max-w-7xl mx-auto space-y-12 py-6">
+        <div class="bg-black text-white p-6 md:p-10 border-4 border-black shadow-[12px_12px_0_0_#fff] shadow-black outline outline-4 outline-black transform rotate-1 mb-8">
+          <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-4">Database Informasi</h1>
+          <p class="text-xl md:text-2xl font-bold border-l-8 border-yellow-400 pl-4 bg-black/50 py-2">Daftar arsip informasi tersimpan. Gunakan filter untuk mempermudah pencarian.</p>
+        </div>
+
+        <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
+          <!-- Sidebar Filters -->
+          <div class="w-full lg:w-[320px] flex-shrink-0">
+            <div class="bg-fuchsia-300 border-4 border-black shadow-[8px_8px_0_0_#000] p-6 lg:sticky lg:top-8">
+              <div class="flex items-center gap-3 mb-6 border-b-4 border-black pb-4 text-3xl font-black uppercase">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+                Filter Data
+              </div>
+
+              <div class="space-y-6">
+                <!-- Date Filter -->
+                <div class="space-y-2">
+                  <label class="block text-xl font-black uppercase">Tanggal</label>
+                  <input type="date" id="filterDate" onchange="applyFilters()" class="block w-full border-4 border-black p-4 text-lg font-bold bg-white focus:outline-none focus:ring-0 shadow-[4px_4px_0_0_#000]" />
+                </div>
+
+                <!-- Source Filter -->
+                <div class="space-y-2">
+                  <label class="block text-xl font-black uppercase">Sumber</label>
+                  <div class="relative">
+                    <select id="filterSource" onchange="applyFilters()" class="block w-full border-4 border-black p-4 pr-12 text-lg font-bold bg-white focus:outline-none focus:ring-0 shadow-[4px_4px_0_0_#000] appearance-none cursor-pointer">
+                      <option value="All">SEMUA SUMBER</option>
+                      <option value="WhatsApp">WhatsApp</option>
+                      <option value="Facebook">Facebook</option>
+                      <option value="Twitter / X">Twitter / X</option>
+                      <option value="Instagram">Instagram</option>
+                      <option value="Portal Berita Resmi">Portal Berita Resmi</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 border-l-4 border-black bg-white">
+                      <span class="font-black text-2xl">↓</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Topic Filter -->
+                <div class="space-y-2">
+                  <label class="block text-xl font-black uppercase">Topik</label>
+                  <div class="relative">
+                    <select id="filterTopic" onchange="applyFilters()" class="block w-full border-4 border-black p-4 pr-12 text-lg font-bold bg-white focus:outline-none focus:ring-0 shadow-[4px_4px_0_0_#000] appearance-none cursor-pointer">
+                      <option value="All">SEMUA TOPIK</option>
+                      <option value="Kesehatan">Kesehatan</option>
+                      <option value="Lalu Lintas">Lalu Lintas</option>
+                      <option value="Berita Nasional">Berita Nasional</option>
+                      <option value="Penipuan">Penipuan</option>
+                      <option value="Sains">Sains</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 border-l-4 border-black bg-white">
+                       <span class="font-black text-2xl">↓</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Label Filter -->
+                <div class="space-y-2">
+                  <label class="block text-xl font-black uppercase">Label</label>
+                  <div class="relative">
+                    <select id="filterLabel" onchange="applyFilters()" class="block w-full border-4 border-black p-4 pr-12 text-lg font-bold bg-white focus:outline-none focus:ring-0 shadow-[4px_4px_0_0_#000] appearance-none cursor-pointer">
+                      <option value="All">SEMUA LABEL</option>
+                      <option value="Hoax">HOAX</option>
+                      <option value="Tidak Hoax">TIDAK HOAX</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 border-l-4 border-black bg-white">
+                      <span class="font-black text-2xl">↓</span>
+                    </div>
+                  </div>
+                </div>
+
+                <button onclick="resetFilters()" class="w-full border-4 border-black bg-white p-4 text-xl font-black uppercase text-black hover:bg-black hover:text-white transition-all shadow-[6px_6px_0_0_#000] hover:shadow-[2px_2px_0_0_#000] hover:translate-y-1 mt-6">
+                  Reset Filter
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Main Content Grid -->
+          <div class="flex-1">
+            <div id="empty-state" class="hidden bg-white border-4 border-black p-12 text-center shadow-[12px_12px_0_0_#000]">
+              <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="mx-auto text-black mb-6"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              <h3 class="text-3xl font-black uppercase mb-4">Tidak ada data</h3>
+              <p class="text-xl font-bold">Tidak ada informasi yang sesuai dengan filter Anda.</p>
+            </div>
+            
+            <div id="data-grid" class="grid gap-8 sm:grid-cols-2">
+              <!-- Data Cards will be injected here via JS -->
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t-4 border-black mt-auto">
+      <div class="mx-auto max-w-7xl px-6 py-6 lg:px-8">
+        <p class="text-center text-sm font-bold text-black uppercase tracking-wider">
+          &copy; 2026 Sistem Deteksi Hoax. All rights reserved.
+        </p>
+      </div>
+    </footer>
+
+    <script type="module">
+      import { mockInformationData } from './data.js';
+
+      const renderDataGrid = (data) => {
+        const grid = document.getElementById('data-grid');
+        const emptyState = document.getElementById('empty-state');
+        
+        if (!grid || !emptyState) return;
+
+        if (data.length === 0) {
+          grid.innerHTML = '';
+          emptyState.classList.remove('hidden');
+          return;
+        }
+
+        emptyState.classList.add('hidden');
+        
+        const html = data.map(item => `
+          <div class="bg-white border-4 border-black shadow-[8px_8px_0_0_#000] flex flex-col h-full hover:-translate-y-2 hover:shadow-[12px_12px_0_0_#000] transition-all relative overflow-hidden group">
+            <div class="p-6 flex-1 bg-white relative z-10">
+              <div class="flex justify-between items-start mb-4">
+                <span class="inline-flex items-center px-3 py-1 text-md font-black uppercase border-2 border-black shadow-[4px_4px_0_0_#000] ${item.label === 'Hoax' ? 'bg-red-400 text-black' : 'bg-emerald-400 text-black'}">
+                  ${item.label}
+                </span>
+                <span class="text-sm font-bold border-2 border-black bg-yellow-200 px-2 py-1 shadow-[2px_2px_0_0_#000]">${item.date}</span>
+              </div>
+              <h3 class="text-2xl font-black text-black leading-tight mb-4 border-b-4 border-black pb-4 uppercase">
+                ${item.title}
+              </h3>
+              <p class="text-lg font-medium text-black line-clamp-4 leading-relaxed bg-slate-100 border-2 border-black p-4 shadow-[inset_4px_4px_0_0_#cbd5e1]">
+                ${item.content}
+              </p>
+            </div>
+            <div class="bg-white border-t-4 border-black p-4 flex flex-col justify-between gap-4 text-sm font-black uppercase relative z-10">
+              <div class="border-4 border-black bg-cyan-100 p-2 text-center shadow-[4px_4px_0_0_#000]">
+                TOPIK: ${item.topic}
+              </div>
+              <div class="border-4 border-black bg-fuchsia-200 p-2 text-center shadow-[4px_4px_0_0_#000]">
+                SUMBER: ${item.source}
+              </div>
+            </div>
+          </div>
+        `).join('');
+
+        grid.innerHTML = html;
+      };
+
+      window.applyFilters = () => {
+        const dateInput = document.getElementById('filterDate');
+        const sourceSelect = document.getElementById('filterSource');
+        const topicSelect = document.getElementById('filterTopic');
+        const labelSelect = document.getElementById('filterLabel');
+
+        const fDate = dateInput ? dateInput.value : '';
+        const fSource = sourceSelect ? sourceSelect.value : 'All';
+        const fTopic = topicSelect ? topicSelect.value : 'All';
+        const fLabel = labelSelect ? labelSelect.value : 'All';
+
+        const filtered = mockInformationData.filter(item => {
+          if (fDate && item.date !== fDate) return false;
+          if (fSource !== 'All' && item.source !== fSource) return false;
+          if (fTopic !== 'All' && item.topic !== fTopic) return false;
+          if (fLabel !== 'All' && item.label !== fLabel) return false;
+          return true;
+        });
+
+        renderDataGrid(filtered);
+      };
+
+      window.resetFilters = () => {
+        ['filterDate', 'filterSource', 'filterTopic', 'filterLabel'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) {
+             el.value = el.tagName === 'SELECT' ? 'All' : '';
+          }
+        });
+        window.applyFilters();
+      };
+
+      // Initial Render
+      document.addEventListener('DOMContentLoaded', () => {
+        window.applyFilters();
+      });
+    </script>
+  </body>
 </html>

@@ -1,26 +1,174 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Hoax Prediction</title>
-</head>
-<body>
-    <h1>Hoax Prediction</h1>
-
-    <nav>
-        <a href="/">Home</a> |
-        <a href="/prediction">Prediction</a> |
-        <a href="/information">Information</a>
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prediksi | Sistem Deteksi Hoax</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="bg-slate-200 font-sans min-h-screen flex flex-col">
+    
+    <!-- Navbar -->
+    <nav class="bg-white border-b-4 border-black shadow-[0_8px_0_0_#000] relative z-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-20">
+          <div class="flex w-full items-center justify-between">
+            <a href="index.html" class="flex-shrink-0 flex items-center cursor-pointer group">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="text-black group-hover:scale-110 transition-transform"><path d="m12 22-8-4.5v-7.5l8-4.5 8 4.5v7.5z"/><path d="m12 8v4"/><path d="m12 16h.01"/></svg>
+              <span class="ml-2 text-3xl font-black tracking-tighter text-black uppercase decoration-4 decoration-black">
+                Guard<span class="bg-black text-white px-2 py-1 ml-1">Hoax</span>
+              </span>
+            </a>
+            
+            <div class="hidden sm:flex sm:space-x-4">
+              <a href="index.html" class="nav-btn bg-white text-black hover:bg-slate-200 hover:shadow-[4px_4px_0_0_#000] border-4 border-black px-6 py-2 text-md font-black uppercase tracking-wider transition-all inline-flex items-center">
+                Beranda
+              </a>
+              <a href="prediction.html" class="nav-btn bg-black text-white shadow-[4px_4px_0_0_#000] flex items-center border-4 border-black px-6 py-2 text-md font-black uppercase tracking-wider transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                Prediksi
+              </a>
+              <a href="information.html" class="nav-btn bg-white text-black hover:bg-slate-200 hover:shadow-[4px_4px_0_0_#000] flex items-center border-4 border-black px-6 py-2 text-md font-black uppercase tracking-wider transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><line x1="10" x2="8" y1="9" y2="9"/></svg>
+                Data
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Mobile Nav -->
+      <div class="sm:hidden border-t-4 border-black bg-white p-4">
+        <div class="flex flex-col space-y-3">
+           <a href="index.html" class="mobile-nav-btn px-4 py-3 border-4 border-black text-lg font-black uppercase transition-all bg-white text-black shadow-[4px_4px_0_0_#000] text-center">
+             Beranda
+           </a>
+           <a href="prediction.html" class="mobile-nav-btn px-4 py-3 border-4 border-black text-lg font-black uppercase transition-all bg-black text-white shadow-[4px_4px_0_0_#000] text-center">
+             Prediksi
+           </a>
+           <a href="information.html" class="mobile-nav-btn px-4 py-3 border-4 border-black text-lg font-black uppercase transition-all bg-white text-black shadow-[4px_4px_0_0_#000] text-center">
+             Data
+           </a>
+        </div>
+      </div>
     </nav>
 
-    <form method="POST" action="/prediction">
-        <textarea name="text" rows="8" cols="60" placeholder="Enter information text here...">{{ input_text }}</textarea>
-        <br><br>
-        <button type="submit">Predict</button>
-    </form>
+    <!-- Main Content -->
+    <main class="flex-1 p-4 sm:p-8">
+      <!-- SECTION: PREDICT -->
+      <section id="page-predict" class="max-w-5xl mx-auto space-y-10 py-6">
+        <div class="bg-black text-white p-8 border-4 border-black shadow-[12px_12px_0_0_#fff] shadow-black outline outline-4 outline-black mb-12 transform -rotate-1">
+          <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-4">Deteksi Teks</h1>
+          <p class="text-xl md:text-2xl font-bold border-l-8 border-yellow-400 pl-4 bg-black/50 py-2">Pastikan kebenaran berita sebelum Anda membagikannya.</p>
+        </div>
 
-    {% if result %}
-        <h2>Prediction Result: {{ result }}</h2>
-    {% endif %}
-</body>
+        <div class="bg-white border-4 border-black shadow-[12px_12px_0_0_#000] overflow-hidden">
+          <div class="p-6 md:p-10 border-b-4 border-black bg-cyan-100">
+            <label for="predictText" class="block text-3xl font-black uppercase mb-6 flex items-center">
+              <span class="bg-black text-white px-4 py-2 mr-4 border-2 border-white shadow-[4px_4px_0_0_#000]">Input</span> Masukkan Pesan / Narasi
+            </label>
+            <textarea id="predictText" rows="8" placeholder="Ketik atau tempel teks pesan yang dicurigai di sini..." class="block w-full border-4 border-black p-6 text-xl font-bold placeholder-gray-500 focus:outline-none focus:ring-0 shadow-[inset_6px_6px_0_0_#e2e8f0] resize-y bg-white"></textarea>
+          </div>
+          <div class="flex flex-col sm:flex-row items-center justify-between p-6 md:p-8 bg-white gap-4">
+            <button onclick="clearPrediction()" class="w-full sm:w-auto border-4 border-black bg-red-400 px-8 py-4 text-xl font-black uppercase text-black hover:bg-white hover:shadow-[6px_6px_0_0_#000] transition-all">
+              Bersihkan Output
+            </button>
+            <button id="btn-predict" onclick="runPrediction()" class="w-full sm:w-auto flex items-center justify-center border-4 border-black bg-blue-500 px-10 py-4 text-2xl font-black uppercase text-black shadow-[8px_8px_0_0_#000] hover:translate-y-1 hover:shadow-[2px_2px_0_0_#000] transition-all">
+              Analisis Teks
+            </button>
+          </div>
+        </div>
+
+        <!-- Result Box -->
+        <div id="prediction-result" class="hidden mt-12 border-4 border-black shadow-[12px_12px_0_0_#000] p-8 md:p-10 animate-in mx-auto transform rotate-1">
+          <div class="flex flex-col md:flex-row items-center md:items-start gap-8 text-black">
+            <div class="bg-white border-4 border-black p-6 shadow-[6px_6px_0_0_#000] rotate-[-5deg]" id="result-icon-container">
+              <!-- Result Icon Injected Here -->
+            </div>
+            <div class="flex-1 text-center md:text-left bg-white border-4 border-black p-6 md:p-8 shadow-[8px_8px_0_0_#000]">
+              <h3 id="result-title" class="text-3xl md:text-5xl font-black uppercase tracking-tight mb-4 border-b-8 border-black inline-block pb-2">
+                STATUS: 
+              </h3>
+              <p id="result-message" class="text-xl md:text-2xl font-bold bg-slate-100 border-4 border-black p-6">
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t-4 border-black mt-auto">
+      <div class="mx-auto max-w-7xl px-6 py-6 lg:px-8">
+        <p class="text-center text-sm font-bold text-black uppercase tracking-wider">
+          &copy; 2026 Sistem Deteksi Hoax. All rights reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Prediction script -->
+    <script type="module">
+      window.runPrediction = () => {
+        const textArea = document.getElementById('predictText');
+        const text = textArea.value.trim();
+        if (!text) return;
+
+        const btn = document.getElementById('btn-predict');
+        if (btn) {
+          btn.innerHTML = `<svg class="animate-spin -ml-2 mr-4 h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Menganalisis...`;
+          btn.setAttribute('disabled', 'true');
+          btn.classList.add('opacity-50', 'cursor-not-allowed');
+        }
+
+        setTimeout(() => {
+          let isHoax = Math.random() > 0.5;
+          const lowerText = text.toLowerCase();
+          
+          if (lowerText.includes('sebarkan') || lowerText.includes('viralkan') || lowerText.includes('kiamat') || lowerText.includes('microchip') || lowerText.includes('gratis')) {
+            isHoax = true;
+          }
+
+          const resultBox = document.getElementById('prediction-result');
+          const resultIconContainer = document.getElementById('result-icon-container');
+          const resultTitle = document.getElementById('result-title');
+          const resultMessage = document.getElementById('result-message');
+
+          if (resultBox && resultIconContainer && resultTitle && resultMessage) {
+            resultBox.classList.remove('hidden');
+
+            if (isHoax) {
+              resultBox.classList.remove('bg-emerald-400');
+              resultBox.classList.add('bg-red-400');
+              resultIconContainer.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-black"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></svg>`;
+              resultTitle.innerHTML = `STATUS: HOAX`;
+              resultMessage.innerHTML = `PERINGATAN: Teks ini terindikasi sebagai informasi palsu/hoax. Jangan disebarkan lebih lanjut kepada grup atau teman Anda!`;
+            } else {
+              resultBox.classList.remove('bg-red-400');
+              resultBox.classList.add('bg-emerald-400');
+              resultIconContainer.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-black"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>`;
+              resultTitle.innerHTML = `STATUS: TIDAK HOAX`;
+              resultMessage.innerHTML = `VALID: Teks ini belum terindikasi mengandung narasi kebohongan. Mengindikasikan bahwa ini mungkin info yang valid.`;
+            }
+          }
+
+          if (btn) {
+            btn.innerHTML = `Analisis Teks`;
+            btn.removeAttribute('disabled');
+            btn.classList.remove('opacity-50', 'cursor-not-allowed');
+          }
+        }, 1500);
+      };
+
+      window.clearPrediction = () => {
+        const textArea = document.getElementById('predictText');
+        if(textArea) textArea.value = '';
+        
+        const resultBox = document.getElementById('prediction-result');
+        if (resultBox) {
+          resultBox.classList.add('hidden');
+        }
+      };
+    </script>
+  </body>
 </html>

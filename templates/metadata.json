@@ -1,0 +1,6 @@
+{
+  "name": "Sistem Deteksi Hoax",
+  "description": "Aplikasi berbasis web untuk mendeteksi apakah suatu informasi teks merupakan Hoax atau Tidak Hoax, dilengkapi dengan manajemen pencarian informasi.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
