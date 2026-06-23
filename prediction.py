@@ -1,19 +1,42 @@
+import re
+
 def predict_hoax(text):
     text = text.lower()
+    score = 0
 
-    hoax_keywords = [
-        "viral",
-        "sebarkan",
-        "100%",
-        "terbukti",
-        "jangan sampai",
-        "rahasia",
-        "konspirasi",
-        "obat ampuh"
-    ]
+    # ================= HOAX FEATURES =================
+    hoax_features = {
+        "menyembuhkan semua penyakit": 4,
+        "100% ampuh": 4,
+        "obat ajaib": 3,
+        "jamin sembuh": 3,
+        "viral wajib share": 3,
+        "tanpa efek samping": 2,
+        "langsung sembuh": 3
+    }
 
-    for keyword in hoax_keywords:
-        if keyword in text:
-            return "Hoax"
+    for phrase, weight in hoax_features.items():
+        if phrase in text:
+            score += weight
 
-    return "Tidak Hoax"
+    # ================= CLICKBAIT =================
+    clickbait = ["viral", "heboh", "shock", "mengerikan"]
+    for word in clickbait:
+        if word in text:
+            score += 1
+
+    # ================= PATTERN =================
+    if re.search(r"\b100%\b", text):
+        score += 3
+
+    if "!!!" in text:
+        score += 1
+
+    # ================= TRUST SIGNAL (NEGATIVE) =================
+    trusted = ["bmkg", "polisi", "penelitian", "data resmi"]
+    for t in trusted:
+        if t in text:
+            score -= 3
+
+    # ================= DECISION =================
+    return "Hoax" if score >= 4 else "Tidak Hoax"
