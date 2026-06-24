@@ -71,7 +71,7 @@
 
         <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
           <div class="w-full lg:w-[320px] flex-shrink-0">
-            <div class="bg-fuchsia-300 border-4 border-black shadow-[8px_8px_0_0_#000] p-6 lg:sticky lg:top-8">
+            <div class="bg-fuchsia-300 border-4 border-black shadow-[8px_8px_0_0_#000] p-6 lg:sticky lg:top-8 lg:max-h-[calc(100vh-5rem)] lg:overflow-y-auto">
               <div class="flex items-center gap-3 mb-6 border-b-4 border-black pb-4 text-3xl font-black uppercase">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                   <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
@@ -186,7 +186,7 @@
 
             <div id="data-grid" class="grid gap-8 sm:grid-cols-2">
               {% for item in information_data %}
-              <div class="bg-white border-4 border-black shadow-[8px_8px_0_0_#000] flex flex-col h-full hover:-translate-y-2 hover:shadow-[12px_12px_0_0_#000] transition-all relative overflow-hidden group">
+              <a href="/article/{{ item['id'] }}" class="group block bg-white border-4 border-black shadow-[8px_8px_0_0_#000] flex flex-col h-full hover:-translate-y-2 hover:shadow-[12px_12px_0_0_#000] transition-all relative overflow-hidden no-underline text-inherit">
                 <div class="p-6 flex-1 bg-white relative z-10">
                   <div class="flex justify-between items-start mb-4 gap-4">
                     <span class="inline-flex items-center px-3 py-1 text-md font-black uppercase border-2 border-black shadow-[4px_4px_0_0_#000] {% if item['label'] == 'Hoax' %}bg-red-400{% else %}bg-emerald-400{% endif %}">
@@ -216,7 +216,7 @@
                     SUMBER: {{ item['source'] }}
                   </div>
                 </div>
-              </div>
+              </a>
               {% else %}
               <div class="bg-white border-4 border-black p-12 text-center shadow-[12px_12px_0_0_#000] sm:col-span-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="mx-auto text-black mb-6">

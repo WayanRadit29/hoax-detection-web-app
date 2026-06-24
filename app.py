@@ -1,5 +1,5 @@
 import sqlite3
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, abort
 from prediction import predict_hoax
 
 app = Flask(__name__)
@@ -92,6 +92,20 @@ def information():
         selected_start_date=start_date,
         selected_end_date=end_date
     )
+
+
+@app.route("/article/<int:item_id>")
+def article(item_id):
+    connection = get_db_connection()
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM information WHERE id = ?", (item_id,))
+    item = cursor.fetchone()
+    connection.close()
+
+    if item is None:
+        abort(404)
+
+    return render_template("article.html", item=item)
 
 
 if __name__ == "__main__":
