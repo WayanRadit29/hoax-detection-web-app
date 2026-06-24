@@ -4,7 +4,7 @@ from pathlib import Path
 import pandas as pd
 
 
-CSV_PATH = Path("data/hoax_data_final.csv")
+CSV_PATH = Path("data/final_dataset.csv")
 DATABASE_PATH = Path("database.db")
 
 

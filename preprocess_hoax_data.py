@@ -17,6 +17,23 @@ def extract_date_from_link(link):
 
     return "2021-04-25"
 
+def clean_title(value):
+    text = clean_text(value)
+
+    prefixes = [
+        r"^\[FALSE\]\s*",
+        r"^\[SALAH\]\s*",
+        r"^\[HOAKS\]\s*",
+        r"^\[HOAX\]\s*",
+        r"^\[MISLEADING\]\s*",
+        r"^\(FALSE\)\s*",
+        r"^\(SALAH\)\s*",
+    ]
+
+    for prefix in prefixes:
+        text = re.sub(prefix, "", text, flags=re.IGNORECASE)
+
+    return text.strip()
 
 def detect_topic(title, content):
     text = f"{title} {content}".lower()
@@ -75,7 +92,7 @@ def main():
     df = df.drop_duplicates(subset=["Header"])
 
     final_df = pd.DataFrame()
-    final_df["title"] = df["Header"].apply(clean_text)
+    final_df["title"] = df["Header"].apply(clean_title)
     final_df["content"] = df["Content"].apply(clean_text)
     final_df["source"] = "TurnBackHoax"
     final_df["topic"] = final_df.apply(
